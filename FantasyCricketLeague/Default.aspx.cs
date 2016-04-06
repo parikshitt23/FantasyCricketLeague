@@ -35,7 +35,7 @@ namespace FantasyCricketLeague
             string strikeRateQuery = " intersect SELECT MATCH_NO ,DATE_MATCH ,SEASON ,TEAM_HOME ,TEAM_AWAY ,TOSS_WINNER ,TOSS_DECISION ,INN_NO ,BALL_NO ,FIRST_INN_TEAM ,B3.STRIKE_BAT ,NON_STRIKE_BAT ,BOWLER ,RUNS_SCORED ,EXTRA ,DISMISSAL ,OUT_BAT ,M_O_M ,WINNER ,WIN_MARGIN  FROM (SELECT B.STRIKE_BAT, CAST(RUNS/OUTS*100 AS INTEGER) AS SR FROM (SELECT STRIKE_BAT, COUNT(DISMISSAL)AS OUTS FROM IPL_MASTER_DATA WHERE DISMISSAL = '*' GROUP BY STRIKE_BAT) B1,(SELECT STRIKE_BAT, SUM(RUNS_SCORED)AS RUNS FROM IPL_MASTER_DATA  group by STRIKE_BAT) B WHERE B1.STRIKE_BAT = B.STRIKE_BAT) B2, IPL_MASTER_DATA B3 WHERE B2.STRIKE_BAT = B3.STRIKE_BAT "+ strikeRateQueryBuilder(StrikerRateDropDownList.Text);
             string halfCenturyQuery = "";
             string CenturyQuery = "";
-            string query = "";
+            
             string oracleQuery =  teamQuery + averageQuery+ strikeRateQuery;
 
             if (!string.IsNullOrWhiteSpace(TextBox1.Text)) {
